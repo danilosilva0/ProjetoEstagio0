@@ -1,0 +1,55 @@
+﻿
+Microsoft Visual Studio Solution File, Format Version 12.00
+# Visual Studio Version 17
+VisualStudioVersion = 17.9.34728.123
+MinimumVisualStudioVersion = 10.0.40219.1
+Project("{9A19103F-16F7-4668-BE54-9A1E7A4F7556}") = "ControleTarefas.WebApi", "ControleTarefas.WebApi.csproj", "{C14A516E-4EC9-489B-B936-351E4A83BF2A}"
+EndProject
+Project("{9A19103F-16F7-4668-BE54-9A1E7A4F7556}") = "ControleTarefas.Repository", "..\ControleTarefas.Repository\ControleTarefas.Repository.csproj", "{B6ABCF6F-5270-4ABC-A3C8-9FAA1A12BD78}"
+EndProject
+Project("{9A19103F-16F7-4668-BE54-9A1E7A4F7556}") = "ControleTarefas.Repository.Interface", "..\ControleTarefas.Repository.Interface\ControleTarefas.Repository.Interface.csproj", "{1296FA96-20E4-46BB-A2DC-DD7F9445E033}"
+EndProject
+Project("{9A19103F-16F7-4668-BE54-9A1E7A4F7556}") = "ControleTarefas.Service", "..\ControleTarefas.Service\ControleTarefas.Service.csproj", "{358D4265-113D-4804-9785-6C60260D25E5}"
+EndProject
+Project("{9A19103F-16F7-4668-BE54-9A1E7A4F7556}") = "ControleTarefas.Service.Interface", "..\ControleTarefas.Service.Interface\ControleTarefas.Service.Interface.csproj", "{ADA1540D-9497-41E3-9A66-092124D4DE6D}"
+EndProject
+Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "ControleTarefas.Entity", "..\ControleTarefas.Entity\ControleTarefas.Entity.csproj", "{9C312792-0D57-4A6A-8A03-7C5683CFD097}"
+EndProject
+Global
+	GlobalSection(SolutionConfigurationPlatforms) = preSolution
+		Debug|Any CPU = Debug|Any CPU
+		Release|Any CPU = Release|Any CPU
+	EndGlobalSection
+	GlobalSection(ProjectConfigurationPlatforms) = postSolution
+		{C14A516E-4EC9-489B-B936-351E4A83BF2A}.Debug|Any CPU.ActiveCfg = Debug|Any CPU
+		{C14A516E-4EC9-489B-B936-351E4A83BF2A}.Debug|Any CPU.Build.0 = Debug|Any CPU
+		{C14A516E-4EC9-489B-B936-351E4A83BF2A}.Release|Any CPU.ActiveCfg = Release|Any CPU
+		{C14A516E-4EC9-489B-B936-351E4A83BF2A}.Release|Any CPU.Build.0 = Release|Any CPU
+		{B6ABCF6F-5270-4ABC-A3C8-9FAA1A12BD78}.Debug|Any CPU.ActiveCfg = Debug|Any CPU
+		{B6ABCF6F-5270-4ABC-A3C8-9FAA1A12BD78}.Debug|Any CPU.Build.0 = Debug|Any CPU
+		{B6ABCF6F-5270-4ABC-A3C8-9FAA1A12BD78}.Release|Any CPU.ActiveCfg = Release|Any CPU
+		{B6ABCF6F-5270-4ABC-A3C8-9FAA1A12BD78}.Release|Any CPU.Build.0 = Release|Any CPU
+		{1296FA96-20E4-46BB-A2DC-DD7F9445E033}.Debug|Any CPU.ActiveCfg = Debug|Any CPU
+		{1296FA96-20E4-46BB-A2DC-DD7F9445E033}.Debug|Any CPU.Build.0 = Debug|Any CPU
+		{1296FA96-20E4-46BB-A2DC-DD7F9445E033}.Release|Any CPU.ActiveCfg = Release|Any CPU
+		{1296FA96-20E4-46BB-A2DC-DD7F9445E033}.Release|Any CPU.Build.0 = Release|Any CPU
+		{358D4265-113D-4804-9785-6C60260D25E5}.Debug|Any CPU.ActiveCfg = Debug|Any CPU
+		{358D4265-113D-4804-9785-6C60260D25E5}.Debug|Any CPU.Build.0 = Debug|Any CPU
+		{358D4265-113D-4804-9785-6C60260D25E5}.Release|Any CPU.ActiveCfg = Release|Any CPU
+		{358D4265-113D-4804-9785-6C60260D25E5}.Release|Any CPU.Build.0 = Release|Any CPU
+		{ADA1540D-9497-41E3-9A66-092124D4DE6D}.Debug|Any CPU.ActiveCfg = Debug|Any CPU
+		{ADA1540D-9497-41E3-9A66-092124D4DE6D}.Debug|Any CPU.Build.0 = Debug|Any CPU
+		{ADA1540D-9497-41E3-9A66-092124D4DE6D}.Release|Any CPU.ActiveCfg = Release|Any CPU
+		{ADA1540D-9497-41E3-9A66-092124D4DE6D}.Release|Any CPU.Build.0 = Release|Any CPU
+		{9C312792-0D57-4A6A-8A03-7C5683CFD097}.Debug|Any CPU.ActiveCfg = Debug|Any CPU
+		{9C312792-0D57-4A6A-8A03-7C5683CFD097}.Debug|Any CPU.Build.0 = Debug|Any CPU
+		{9C312792-0D57-4A6A-8A03-7C5683CFD097}.Release|Any CPU.ActiveCfg = Release|Any CPU
+		{9C312792-0D57-4A6A-8A03-7C5683CFD097}.Release|Any CPU.Build.0 = Release|Any CPU
+	EndGlobalSection
+	GlobalSection(SolutionProperties) = preSolution
+		HideSolutionNode = FALSE
+	EndGlobalSection
+	GlobalSection(ExtensibilityGlobals) = postSolution
+		SolutionGuid = {3F435A83-0CE7-4525-890A-D2DA5DAC3224}
+	EndGlobalSection
+EndGlobal

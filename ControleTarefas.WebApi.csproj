@@ -1,0 +1,20 @@
+<Project Sdk="Microsoft.NET.Sdk.Web">
+
+  <PropertyGroup>
+    <TargetFramework>net6.0</TargetFramework>
+    <Nullable>enable</Nullable>
+    <ImplicitUsings>enable</ImplicitUsings>
+  </PropertyGroup>
+
+  <ItemGroup>
+    <PackageReference Include="Swashbuckle.AspNetCore" Version="6.5.0" />
+  </ItemGroup>
+
+  <ItemGroup>
+    <ProjectReference Include="..\ControleTarefas.Repository.Interface\ControleTarefas.Repository.Interface.csproj" />
+    <ProjectReference Include="..\ControleTarefas.Repository\ControleTarefas.Repository.csproj" />
+    <ProjectReference Include="..\ControleTarefas.Service.Interface\ControleTarefas.Service.Interface.csproj" />
+    <ProjectReference Include="..\ControleTarefas.Service\ControleTarefas.Service.csproj" />
+  </ItemGroup>
+
+</Project>
