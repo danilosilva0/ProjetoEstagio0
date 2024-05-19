@@ -1,5 +1,7 @@
 using ControleTarefas.Entity.DTO;
+using ControleTarefas.Entity.Entities;
 using ControleTarefas.Service.Interface.Services;
+using ControleTarefas.WebApi;
 using Microsoft.AspNetCore.Mvc;
 using System.Linq;
 
@@ -37,7 +39,7 @@ namespace ProjetoEstagioPitang.Controllers
             if (Tarefas.Contains(tarefa))
             {
                 _logger.LogInformation($"A tarefa {tarefa} ja` existe na lista de tarefas");
-                //TODO: Exceptions 
+                throw new ServiceException($"A tarefa {tarefa} ja` existe na lista de tarefas");
             }
 
             Tarefas.Add(tarefa);
@@ -49,29 +51,27 @@ namespace ProjetoEstagioPitang.Controllers
         [HttpPut(Name = "EditarTarefas")]
         public List<string> Put(string tarefa, string novoNomeTarefa)
         {
-            if (!Tarefas.Contains(tarefa))
-            {
-                _logger.LogInformation($"A tarefa {tarefa} nao existe na lista de tarefas");
-            }
-
             if (Tarefas.IndexOf(tarefa) != -1)
+            {
                 Tarefas[Tarefas.IndexOf(tarefa)] = novoNomeTarefa;
-
-            _logger.LogInformation($"A tarefa {tarefa} foi editada para {novoNomeTarefa}");
-
+                _logger.LogInformation($"A tarefa {tarefa} foi editada para {novoNomeTarefa}");
+            }
+            else
+                throw new ServiceException($"A tarefa {tarefa} nao existe na lista de tarefas", ex);
+            
             return Tarefas;
         }
 
         [HttpDelete(Name = "ExcluirTarefas")]
         public List<string> Delete(string tarefa)
         {
-            if (!Tarefas.Contains(tarefa))
-            {
-                _logger.LogInformation($"A tarefa {tarefa} nao existe na lista de tarefas");
-            }
-
             if (Tarefas.IndexOf(tarefa) != -1)
+            {
                 Tarefas.RemoveAt(Tarefas.IndexOf(tarefa));
+                _logger.LogInformation($"A tarefa {tarefa} foi deletada com sucesso");
+            }
+            else
+                throw new ServiceException($"A tarefa {tarefa} nao existe na lista de tarefas", ex);
 
             return Tarefas;
         }
