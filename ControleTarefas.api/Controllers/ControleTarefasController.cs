@@ -11,7 +11,7 @@ namespace ProjetoEstagioPitang.Controllers
     [Route("[controller]")]
     public class ControleTarefasController : ControllerBase
     {
-
+        private static List<string> Tarefas { get; set; } = new() { "Tarefa0", "Tarefa1", "Tarefa2", "Tarefa3" };
         private readonly ILogger<ControleTarefasController> _logger;
         private readonly ITarefaService _tarefaService;
 
@@ -24,7 +24,7 @@ namespace ProjetoEstagioPitang.Controllers
         [HttpGet(Name = "BuscarTarefas")]
         public ActionResult<List<TarefaDTO>> ListarTodasTarefas()
         {
-            return _tarefaService.ListarTarefasDTO(null);
+            return _tarefaService.ListarTodasTarefasDTO();
         }
 
         [HttpGet(Name = "FiltrarTarefas")]

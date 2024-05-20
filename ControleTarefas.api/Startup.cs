@@ -2,6 +2,7 @@
 using ControleTarefas.Repository.Repositories;
 using ControleTarefas.Service.Interface.Services;
 using ControleTarefas.Service.Services;
+using ControleTarefas.WebApi.Middleware;
 using Microsoft.OpenApi.Any;
 using Microsoft.OpenApi.Models;
 
@@ -28,13 +29,21 @@ namespace ControleTarefas.WebApi
                 {
                     Title = "Controle de Tarefas",
                     Version = "v1",
-                    Description = "APIs de estudo"
+                    Description = "APIs de estudo",
+                    Contact = new() { Name = "Danilo Silva", Url = new Uri("http://google.com.br")},
+                    License = new() { Name = "Private", Url = new Uri("http://google.com.br")},
+                    TermsOfService = new Uri("http://google.com.br")
                 });
             });
         }
 
         public void Configure(IApplicationBuilder app, IWebHostEnvironment env)
         {
+            if(env.IsDevelopment())
+            {
+                app.UseDeveloperExceptionPage();
+            }
+
             app.UseSwagger();
             app.UseSwaggerUI(c =>
             {
@@ -46,7 +55,7 @@ namespace ControleTarefas.WebApi
             {
                 endpoints.MapControllers();
             });
-
+            app.UseMiddleware<ApiMiddleware>();
         }
     }
 }
