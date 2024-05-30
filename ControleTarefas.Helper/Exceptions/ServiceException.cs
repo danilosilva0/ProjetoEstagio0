@@ -6,7 +6,7 @@ using System.Threading.Tasks;
 
 namespace ControleTarefas.Helper.Exceptions
 {
-    internal class ServiceException
+    public class ServiceException
     {
     }
 }

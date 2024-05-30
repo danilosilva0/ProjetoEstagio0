@@ -9,7 +9,9 @@ namespace ControleTarefas.Service.Interface.Services
 {
     public interface ITarefaService
     {
-        List<TarefaDTO> ListarTodasTarefasDTO();
+        List<TarefaDTO> DeletarTarefa(string tarefa);
+        List<TarefaDTO> EditarTarefa(string tarefa, string novoNomeTarefa);
+        List<TarefaDTO> InserirTarefa(string tarefa);
         List<TarefaDTO> ListarTarefasDTO(List<string> tarefas);
     }
 }

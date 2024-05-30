@@ -2,11 +2,15 @@
 using Newtonsoft.Json;
 using System.Net;
 using System.Text.Json.Serialization;
+using ControleTarefas.Helper.Response;
+using log4net;
+using System.Diagnostics;
 
 namespace ControleTarefas.WebApi.Middleware
 {
-    public class ApiMiddleware
+    public class ApiMiddleware : IMiddleware
     {
+        private static readonly ILog _log = LogManager.GetLogger(typeof(ApiMiddleware));
         public ApiMiddleware()
         {
             
@@ -14,11 +18,18 @@ namespace ControleTarefas.WebApi.Middleware
 
         public async Task InvokeAsync(HttpContext context, RequestDelegate next)
         {
+            Stopwatch stopwatch = new();
+            stopwatch.Start();
             try
             {
                 await next.Invoke(context);
-            }catch (Exception ex)
+                stopwatch.Stop();
+                _log.InfoFormat("Serviço executado com sucesso: {0} {1} [{2} ms]", context.Request.Method, context.Request.Path, stopwatch.ElapsedMilliseconds);
+            }
+            catch (Exception ex)
             {
+                stopwatch.Stop();
+                _log.Error($"Erro no serviço: {context.Request.Path} / Mensagem: {ex.Message} [{stopwatch.ElapsedMilliseconds}]", ex);
                 await HandleException(context, ex);
             }
         }
@@ -35,7 +46,7 @@ namespace ControleTarefas.WebApi.Middleware
                     messages.Add(ex.Message);
                     break;
                 default:
-                    messages.Add(InfraMessages);
+                    messages.Add(InfraMessages.UnexpectedError);
                     break;
             }
 

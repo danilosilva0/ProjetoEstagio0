@@ -21,6 +21,7 @@ namespace ControleTarefas.WebApi
 
             services.AddScoped<ITarefaRepository, TarefaRepository>();
             services.AddScoped<ITarefaService, TarefaService>();
+            services.AddTransient<ApiMiddleware>();
 
             services.AddSwaggerGen(c =>
             {
@@ -51,11 +52,11 @@ namespace ControleTarefas.WebApi
                 c.RoutePrefix = string.Empty;
             });
             app.UseRouting();
+            app.UseMiddleware<ApiMiddleware>();
             app.UseEndpoints(endpoints =>
             {
                 endpoints.MapControllers();
             });
-            app.UseMiddleware<ApiMiddleware>();
         }
     }
 }

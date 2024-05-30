@@ -13,6 +13,21 @@ namespace ControleTarefas.Repository.Repositories
     {
         private static List<Tarefa> Tarefas { set; get; } = new() { new("Tarefa1"), new("Tarefa2"), new("Tarefa3"), new("Tarefa4")};
 
+        public void Deletar(Tarefa tarefa)
+        {
+            Tarefas.Remove(tarefa);
+        }
+
+        public void Editar(string tarefa, string novoNomeTarefa)
+        {
+            throw new NotImplementedException();
+        }
+
+        public void Inserir(Tarefa tarefa)
+        {
+            Tarefas.Add(tarefa);
+        }
+
         public List<TarefaDTO> ListarTarefasDTO(List<string> tarefas)
         {
             return Tarefas.Where(tarefa => tarefas.Contains(tarefa.Titulo.ToUpper()))
@@ -34,6 +49,11 @@ namespace ControleTarefas.Repository.Repositories
                     Titulo = tarefa.Titulo
                 })
                 .ToList();
+        }
+
+        public Tarefa ObterTarefa(string tituloTarefa)
+        {
+            return Tarefas.FirstOrDefault(e => e.Titulo.ToLower() == tituloTarefa.ToLower());
         }
     }
 }
