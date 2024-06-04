@@ -1,4 +1,5 @@
 ﻿using ControleTarefas.Entity.DTO;
+using ControleTarefas.Entity.Model;
 using System;
 using System.Collections.Generic;
 using System.Linq;
@@ -11,7 +12,7 @@ namespace ControleTarefas.Service.Interface.Services
     {
         List<TarefaDTO> DeletarTarefa(string tarefa);
         List<TarefaDTO> EditarTarefa(string tarefa, string novoNomeTarefa);
-        List<TarefaDTO> InserirTarefa(string tarefa);
+        List<TarefaDTO> InserirTarefa(CadastroTarefaModel tarefa);
         List<TarefaDTO> ListarTarefasDTO(List<string> tarefas);
     }
 }

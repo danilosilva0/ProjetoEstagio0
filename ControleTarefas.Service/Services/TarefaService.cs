@@ -1,9 +1,11 @@
 ﻿using ControleTarefas.Entity.DTO;
 using ControleTarefas.Entity.Entities;
+using ControleTarefas.Entity.Model;
 using ControleTarefas.Helper.Exceptions;
 using ControleTarefas.Helper.Messages;
 using ControleTarefas.Repository.Interface.IRepositories;
 using ControleTarefas.Service.Interface.Services;
+using ControleTarefas.Validator.Manual;
 using log4net;
 
 namespace ControleTarefas.Service.Services
@@ -25,7 +27,7 @@ namespace ControleTarefas.Service.Services
             else
             {
                 _log.InfoFormat("A tarefa '{0}' não existe na lista de tarefas.", nomeTarefa);
-                throw new ServiceException(string.Format(BusinessMessages.RegisterNotFound, nomeTarefa));
+                throw new ServiceException(string.Format(ServiceMessages.RegisterNotFound, nomeTarefa));
             }
 
             return _tarefaRepository.ListarTodasTarefasDTO();
@@ -50,17 +52,13 @@ namespace ControleTarefas.Service.Services
             return _tarefaRepository.ListarTodasTarefasDTO();
         }
 
-        public List<TarefaDTO> InserirTarefa(string novaTarefa)
+        public List<TarefaDTO> InserirTarefa(CadastroTarefaModel novaTarefa)
         {
-            var tarefa = _tarefaRepository.ObterTarefa(novaTarefa);
+            var tarefa = _tarefaRepository.ObterTarefa(novaTarefa.Titulo);
 
-            if (tarefa != null)
-            {
-                _log.InfoFormat("A tarefa '{0}' ja` existe na lista de tarefas", novaTarefa);
-                throw new ServiceException($"A tarefa '{tarefa}' ja` existe na lista de tarefas");
-            }
+            CadastroTarefaValidator.Validar(novaTarefa, tarefa);
 
-            tarefa = new Tarefa(novaTarefa);
+            tarefa = new Tarefa(novaTarefa.Titulo);
             _tarefaRepository.Inserir(tarefa);
             _log.InfoFormat("A tarefa '{0}' foi inserida com sucesso!", novaTarefa);
 

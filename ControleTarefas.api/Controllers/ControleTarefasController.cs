@@ -1,5 +1,6 @@
 using ControleTarefas.Entity.DTO;
 using ControleTarefas.Entity.Entities;
+using ControleTarefas.Entity.Model;
 using ControleTarefas.Service.Interface.Services;
 using ControleTarefas.WebApi;
 using log4net;
@@ -33,7 +34,7 @@ namespace ProjetoEstagioPitang.Controllers
         }
 
         [HttpPost("InserirTarefa")]
-        public ActionResult<List<TarefaDTO>> Post(string tarefa)
+        public ActionResult<List<TarefaDTO>> Post(CadastroTarefaModel tarefa)
         {
             return _tarefaService.InserirTarefa(tarefa);
         }

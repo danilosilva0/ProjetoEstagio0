@@ -5,6 +5,7 @@ using System.Text.Json.Serialization;
 using ControleTarefas.Helper.Response;
 using log4net;
 using System.Diagnostics;
+using ControleTarefas.Helper.Exceptions;
 
 namespace ControleTarefas.WebApi.Middleware
 {
@@ -44,6 +45,9 @@ namespace ControleTarefas.WebApi.Middleware
             {
                 case ServiceException:
                     messages.Add(ex.Message);
+                    break;
+                case ServiceListException:
+                    messages = ((ServiceListException)ex).Messages;
                     break;
                 default:
                     messages.Add(InfraMessages.UnexpectedError);

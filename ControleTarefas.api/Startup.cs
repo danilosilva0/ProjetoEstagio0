@@ -2,6 +2,7 @@
 using ControleTarefas.Repository.Repositories;
 using ControleTarefas.Service.Interface.Services;
 using ControleTarefas.Service.Services;
+using ControleTarefas.WebApi.Configuration;
 using ControleTarefas.WebApi.Middleware;
 using Microsoft.OpenApi.Any;
 using Microsoft.OpenApi.Models;
@@ -18,9 +19,8 @@ namespace ControleTarefas.WebApi
         public void ConfigureServices(IServiceCollection services)
         {
             services.AddControllers();
-
-            services.AddScoped<ITarefaRepository, TarefaRepository>();
-            services.AddScoped<ITarefaService, TarefaService>();
+            services.AddDependencyInjectionConfiguration();
+            services.AddFluentConfiguration();  
             services.AddTransient<ApiMiddleware>();
 
             services.AddSwaggerGen(c =>

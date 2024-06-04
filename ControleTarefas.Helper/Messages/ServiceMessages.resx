@@ -117,11 +117,26 @@
   <resheader name="writer">
     <value>System.Resources.ResXResourceWriter, System.Windows.Forms, Version=4.0.0.0, Culture=neutral, PublicKeyToken=b77a5c561934e089</value>
   </resheader>
+  <data name="ExistentRegister" xml:space="preserve">
+    <value>A tarefa '{tarefa}' ja` existe na lista de tarefas</value>
+  </data>
+  <data name="InvalidInput" xml:space="preserve">
+    <value>Opa! O campo "{0}" está inválido. Confira-o novamente.</value>
+  </data>
+  <data name="MaxInputSize" xml:space="preserve">
+    <value>Opa! O campo '{0}' deve possuir no máximo {1} caracteres.</value>
+  </data>
+  <data name="MinInputSize" xml:space="preserve">
+    <value>Opa! O campo '{0}' deve possuir no mínimo {1} caractere(s).</value>
+  </data>
   <data name="RegisterNotFound" xml:space="preserve">
     <value>Vish... o resgitro '{0}' não foi encontrado (X_X)</value>
   </data>
-  <data name="RegisterRemoved" xml:space="preserve">
+  <data name="RemovedRegister" xml:space="preserve">
     <value>Opa! O registro '{0}' foi removido!  \(⌒▽⌒)/</value>
+  </data>
+  <data name="Required" xml:space="preserve">
+    <value>Calma! Não está esquecendo de nada? O campo '{0}' é obrigatório!</value>
   </data>
   <data name="SuccessfulOperation" xml:space="preserve">
     <value>Opa! A operação '{0}' foi realizada com sucesso! \(⌒▽⌒)/</value>
