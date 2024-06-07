@@ -6,7 +6,7 @@ using System.Threading.Tasks;
 
 namespace ControleTarefas.Entity.Entities
 {
-    public class Tarefa
+    public class Tarefa : IdEntity<int>
     {
         public string Titulo { get; set; }
         public Tarefa()

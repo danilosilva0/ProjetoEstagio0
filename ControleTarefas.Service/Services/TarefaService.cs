@@ -16,12 +16,12 @@ namespace ControleTarefas.Service.Services
         private readonly ITarefaRepository _tarefaRepository;
         public TarefaService(ITarefaRepository tarefaRepository) { _tarefaRepository = tarefaRepository;}
 
-        public List<TarefaDTO> DeletarTarefa(string nomeTarefa)
+        public async Task<List<TarefaDTO>> DeletarTarefa(string nomeTarefa)
         {
-            var tarefa = _tarefaRepository.ObterTarefa(nomeTarefa);
+            var tarefa = await _tarefaRepository.ObterTarefa(nomeTarefa);
             if (tarefa != null)
             {
-                _tarefaRepository.Deletar(tarefa);
+                await _tarefaRepository.Deletar(tarefa);
                 _log.InfoFormat("A tarefa '{0}' foi deletada com sucesso!", nomeTarefa);
             }
             else
@@ -30,17 +30,18 @@ namespace ControleTarefas.Service.Services
                 throw new ServiceException(string.Format(ServiceMessages.RegisterNotFound, nomeTarefa));
             }
 
-            return _tarefaRepository.ListarTodasTarefasDTO();
+            return await _tarefaRepository.ListarTodasTarefasDTO();
         }
 
-        public List<TarefaDTO> EditarTarefa(string tarefa, string novoNomeTarefa)
+        public async Task<List<TarefaDTO>> EditarTarefa(string tarefa, string novoNomeTarefa)
         {
 
 
-            var tarefaExistente = _tarefaRepository.ObterTarefa(tarefa);
+            var tarefaExistente = await _tarefaRepository.ObterTarefa(tarefa);
             if (tarefaExistente != null)
             {
                 tarefaExistente.Titulo = novoNomeTarefa;
+                await _tarefaRepository.Atualizar(tarefaExistente);
                 _log.InfoFormat("A tarefa '{0}' foi editada para '{1}' com sucesso!", tarefa, novoNomeTarefa);
             }
             else
@@ -49,29 +50,31 @@ namespace ControleTarefas.Service.Services
                 throw new ServiceException($"A tarefa {tarefa} nao existe na lista de tarefas");
             }
 
-            return _tarefaRepository.ListarTodasTarefasDTO();
+            return await _tarefaRepository.ListarTodasTarefasDTO();
         }
 
-        public List<TarefaDTO> InserirTarefa(CadastroTarefaModel novaTarefa)
+        public Task<List<TarefaDTO>> InserirTarefa(CadastroTarefaModel novaTarefa)
         {
-            var tarefa = _tarefaRepository.ObterTarefa(novaTarefa.Titulo);
+            var tarefa = await _tarefaRepository.ObterTarefa(novaTarefa.Titulo);
+
+            if (tarefa != null) throw new ServiceException(string.Format(ServiceMessages.ExistentRegister, "Titulo"));
 
             CadastroTarefaValidator.Validar(novaTarefa, tarefa);
 
             tarefa = new Tarefa(novaTarefa.Titulo);
-            _tarefaRepository.Inserir(tarefa);
+            await _tarefaRepository.Inserir(tarefa);
             _log.InfoFormat("A tarefa '{0}' foi inserida com sucesso!", novaTarefa);
-
-            return _tarefaRepository.ListarTodasTarefasDTO();
+            //throw new Exception("erro genérico");
+            return await _tarefaRepository.ListarTodasTarefasDTO();
         }
 
-        public List<TarefaDTO> ListarTarefasDTO(List<string> tarefas) 
+        public Task<List<TarefaDTO>> ListarTarefasDTO(List<string> tarefas) 
         {
-            if (tarefas == null) return _tarefaRepository.ListarTodasTarefasDTO();
+            if (tarefas == null) return await _tarefaRepository.ListarTodasTarefasDTO();
             else
             {
                 tarefas = tarefas.Select(t => t.ToUpper()).ToList();
-                return _tarefaRepository.ListarTarefasDTO(tarefas);
+                return await _tarefaRepository.ListarTarefasDTO(tarefas);
             }
         }
     }

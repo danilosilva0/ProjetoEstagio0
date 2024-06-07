@@ -6,6 +6,7 @@ using ControleTarefas.WebApi;
 using log4net;
 using Microsoft.AspNetCore.Mvc;
 using System.Linq;
+using ControleTarefas.Helper;
 
 namespace ProjetoEstagioPitang.Controllers
 {
@@ -22,33 +23,36 @@ namespace ProjetoEstagioPitang.Controllers
         }
 
         [HttpGet("BuscarTarefas")]
-        public ActionResult<List<TarefaDTO>> ListarTodasTarefas()
+        public async Task<List<TarefaDTO>> ListarTodasTarefas()
         {
-            return _tarefaService.ListarTarefasDTO(null);
+            return await _tarefaService.ListarTarefasDTO(null);
         }
 
         [HttpGet("FiltrarTarefas")]
-        public ActionResult<List<TarefaDTO>> FiltrarTarefas(string tarefas)
+        public async Task<List<TarefaDTO>> FiltrarTarefas(string tarefas)
         {
-            return _tarefaService.ListarTarefasDTO(new List<string>() { tarefas });
+            return await _tarefaService.ListarTarefasDTO(new List<string>() { tarefas });
         }
 
         [HttpPost("InserirTarefa")]
-        public ActionResult<List<TarefaDTO>> Post(CadastroTarefaModel tarefa)
+        [TransacaoObrigatoria]
+        public async Task<List<TarefaDTO>> Post(CadastroTarefaModel tarefa)
         {
-            return _tarefaService.InserirTarefa(tarefa);
+            return await _tarefaService.InserirTarefa(tarefa);
         }
 
         [HttpPut("EditarTarefas")]
-        public ActionResult<List<TarefaDTO>> Put(string tarefa, string novoNomeTarefa)
+        [TransacaoObrigatoria]
+        public async Task<List<TarefaDTO>> Put(string tarefa, string novoNomeTarefa)
         {
-            return _tarefaService.EditarTarefa(tarefa, novoNomeTarefa);
+            return await _tarefaService.EditarTarefa(tarefa, novoNomeTarefa);
         }
 
         [HttpDelete("DeletarTarefas")]
-        public ActionResult<List<TarefaDTO>> Delete(string tarefa)
+        [TransacaoObrigatoria]
+        public async Task<List<TarefaDTO>> Delete(string tarefa)
         {
-            return _tarefaService.DeletarTarefa(tarefa);
+            return await _tarefaService.DeletarTarefa(tarefa);
         }
     }
 }

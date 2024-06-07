@@ -17,7 +17,12 @@ Project("{9A19103F-16F7-4668-BE54-9A1E7A4F7556}") = "ControleTarefas.Service.Int
 EndProject
 Project("{9A19103F-16F7-4668-BE54-9A1E7A4F7556}") = "ControleTarefas.Helper", "ControleTarefas.Helper\ControleTarefas.Helper.csproj", "{6A9BF7F5-F723-4287-BFE6-B478050EB789}"
 EndProject
-Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "ControleTarefas.Validator", "ControleTarefas.Validator\ControleTarefas.Validator.csproj", "{F9FCB505-070E-4655-9942-A14B46941A1A}"
+Project("{9A19103F-16F7-4668-BE54-9A1E7A4F7556}") = "ControleTarefas.Validator", "ControleTarefas.Validator\ControleTarefas.Validator.csproj", "{F9FCB505-070E-4655-9942-A14B46941A1A}"
+EndProject
+Project("{2150E333-8FDC-42A3-9474-1A3956D46DE8}") = "Itens de Solução", "Itens de Solução", "{D215AD99-B8A7-478A-913F-A1BB1EB902B3}"
+	ProjectSection(SolutionItems) = preProject
+		script.sql = script.sql
+	EndProjectSection
 EndProject
 Global
 	GlobalSection(SolutionConfigurationPlatforms) = preSolution

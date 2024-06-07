@@ -8,13 +8,13 @@ using System.Threading.Tasks;
 
 namespace ControleTarefas.Repository.Interface.IRepositories
 {
-    public interface ITarefaRepository
+    public interface ITarefaRepository : IBaseRepository<Tarefa>
     {
-        void Deletar(Tarefa tarefa);
-        void Editar(string tarefa, string novoNomeTarefa);
-        void Inserir(Tarefa tarefa);
-        List<TarefaDTO> ListarTarefasDTO(List<string> tarefas);
-        List<TarefaDTO> ListarTodasTarefasDTO();
-        Tarefa ObterTarefa(string tituloTarefa);
+        //void Deletar(Tarefa tarefa);
+        //void Editar(string tarefa, string novoNomeTarefa);
+        //void Inserir(Tarefa tarefa);
+        Task<List<TarefaDTO>> ListarTarefasDTO(List<string> tarefas);
+        Task<List<TarefaDTO>> ListarTodasTarefasDTO();
+        Task<Tarefa> ObterTarefa(string tituloTarefa, bool asNoTracking = false);
     }
 }
