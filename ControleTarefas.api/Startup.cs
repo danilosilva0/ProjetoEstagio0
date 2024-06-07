@@ -2,6 +2,8 @@
 using ControleTarefas.Repository.Repositories;
 using ControleTarefas.Service.Interface.Services;
 using ControleTarefas.Service.Services;
+using ControleTarefas.WebApi.Configuration;
+using ControleTarefas.WebApi.Middleware;
 using Microsoft.OpenApi.Any;
 using Microsoft.OpenApi.Models;
 
@@ -9,17 +11,20 @@ namespace ControleTarefas.WebApi
 {
     public class Startup
     {
-        public Startup()
+        public IConfiguration Configuracao { get; }
+        public Startup(IConfiguration configuracao)
         {
 
+            Configuracao = configuracao;
         }
 
         public void ConfigureServices(IServiceCollection services)
         {
             services.AddControllers();
-
-            services.AddScoped<ITarefaRepository, TarefaRepository>();
-            services.AddScoped<ITarefaService, TarefaService>();
+            services.AddDependencyInjectionConfiguration();
+            services.AddDatabaseConfiguration(Configuracao);
+            services.AddFluentConfiguration();  
+            services.AddTransient<ApiMiddleware>();
 
             services.AddSwaggerGen(c =>
             {
@@ -28,13 +33,21 @@ namespace ControleTarefas.WebApi
                 {
                     Title = "Controle de Tarefas",
                     Version = "v1",
-                    Description = "APIs de estudo"
+                    Description = "APIs de estudo",
+                    Contact = new() { Name = "Danilo Silva", Url = new Uri("http://google.com.br")},
+                    License = new() { Name = "Private", Url = new Uri("http://google.com.br")},
+                    TermsOfService = new Uri("http://google.com.br")
                 });
             });
         }
 
         public void Configure(IApplicationBuilder app, IWebHostEnvironment env)
         {
+            if(env.IsDevelopment())
+            {
+                app.UseDeveloperExceptionPage();
+            }
+
             app.UseSwagger();
             app.UseSwaggerUI(c =>
             {
@@ -42,11 +55,11 @@ namespace ControleTarefas.WebApi
                 c.RoutePrefix = string.Empty;
             });
             app.UseRouting();
+            app.UseMiddleware<ApiMiddleware>();
             app.UseEndpoints(endpoints =>
             {
                 endpoints.MapControllers();
             });
-
         }
     }
 }
